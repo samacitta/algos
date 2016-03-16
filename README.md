@@ -1,1 +1,2 @@
-"# algos" 
+# UCSD/HSE Algorithms Series
+
