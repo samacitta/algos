@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1458265513 source:c:\coursera\algos\utilities\testgen\testgen.cpp
+	<cstdlib>
+	<iostream>
+	<vector>
+	<limits>
+	<ctime>
+	"nrand.h"
+
+1458250887 c:\coursera\algos\utilities\\nrand.h
+
+1458257474 source:c:\coursera\algos\utilities\nrand.cpp
+	<cstdlib>
+	<stdexcept>
+	<ctime>
+
