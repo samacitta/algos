@@ -30,7 +30,11 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add directory="C:/Coursera/algos/utilities/" />
 		</Compiler>
+		<Unit filename="../nrand.cpp" />
+		<Unit filename="../nrand.h" />
+		<Unit filename="testgen.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
