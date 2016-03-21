@@ -4,7 +4,6 @@
 #include <random>
 
 int nrand(int n);
-auto createRandGen(unsigned seed, int n);
-int bigRand(std::mt19937, int n);
+std::function<int()> createUniformRandGen(unsigned seed, int n);
 
 #endif // GUARD_nrand_h
