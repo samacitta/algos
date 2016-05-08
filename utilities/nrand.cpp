@@ -31,7 +31,13 @@ int nrand(int n) {
     return r;
 }
 
-std::function<int()> createRandGen(unsigned seed, int n) {
+/* Create and return an integer random number generator
+   params:  an unsigned seed value "seed",
+            an integer "n" defining the distribution range
+   returns: a generator function that produces random values between 0 and
+            n-1
+*/
+std::function<int()> createUniformRandGen(unsigned seed, int n) {
     if (seed == 0u) {
         seed = time(NULL);
         std::cout << "seed = " << seed << "\n";
@@ -41,17 +47,7 @@ std::function<int()> createRandGen(unsigned seed, int n) {
     std::function<int()> getRand = std::bind(distribution, generator);
     return getRand;
 }
-
-int bigRand(std::mt19937 generator, int n) {
-    std::uniform_int_distribution<int> distribution(0, n-1);
-    int result = distribution(generator);  // generates number in the range 0..n-1
-    // bind distribution and generator for repeated use
-    //auto dice = std::bind(distribution, generator);
-    //int wisdom = dice()+dice()+dice();
-    return result;
-
-}
-
+/*
 int main() {
     unsigned seed = 0;
     int n = 100;
@@ -63,3 +59,4 @@ int main() {
 
     return 0;
 }
+*/
