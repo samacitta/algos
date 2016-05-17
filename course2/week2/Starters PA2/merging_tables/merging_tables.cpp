@@ -12,7 +12,7 @@ using std::vector;
 
 struct DisjointSetsElement {
 	int size, parent, rank;
-	
+
 	DisjointSetsElement(int size = 0, int parent = -1, int rank = 0):
 	    size(size), parent(parent), rank(rank) {}
 };
@@ -29,6 +29,10 @@ struct DisjointSets {
 
 	int getParent(int table) {
 		// find parent and compress path
+		if (table != sets[table].parent) {
+            sets[table].parent = getParent(sets[table].parent);
+		}
+		return sets[table].parent;
 	}
 
 	void merge(int destination, int source) {
@@ -38,26 +42,30 @@ struct DisjointSets {
 			// merge two components
 			// use union by rank heuristic
                         // update max_table_size
-		}		
+		}
 	}
 };
 
 int main() {
+    // n = number of tables
+    // m = number of merge queries to perform
 	int n, m;
 	cin >> n >> m;
 
+	// build initial tables, i.e., sets
 	DisjointSets tables(n);
 	for (auto &table : tables.sets) {
 		cin >> table.size;
 		tables.max_table_size = max(tables.max_table_size, table.size);
 	}
 
+	// process each merge query in input list
 	for (int i = 0; i < m; i++) {
 		int destination, source;
 		cin >> destination >> source;
-                --destination;
-                --source;
-		
+                --destination;       // adjust for 0-based indexing since the
+                --source;            // input is 1-based
+
 		tables.merge(destination, source);
 	        cout << tables.max_table_size << endl;
 	}
