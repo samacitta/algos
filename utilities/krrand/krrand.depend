@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1463940093 source:/home/kevin/Coursera/algos/utilities/krrand.cpp
+	<cstdlib>
+	<stdexcept>
+	<ctime>
+	<chrono>
+	<random>
+	<functional>
+	<algorithm>
+	<vector>
+
+1463888926 source:/home/kevin/Coursera/algos/utilities/krtest.cpp
+	<iostream>
+	"krrand.h"
+
+1463940089 /home/kevin/Coursera/algos/utilities/krrand.h
+	<random>
+	<functional>
+

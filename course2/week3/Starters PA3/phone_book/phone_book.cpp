@@ -1,10 +1,12 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <unordered_map>
 
 using std::string;
 using std::vector;
 using std::cin;
+using std::unordered_map;
 
 struct Query {
     string type, name;
@@ -65,6 +67,34 @@ vector<string> process_queries(const vector<Query>& queries) {
         }
     return result;
 }
+
+// fast implementation using a hash table to store the contact data
+vector<string> process_queries_fast(const vector<Query>& queries) {
+    vector<string> result;
+
+    // construct the empty contact hash table
+    unordered_map<int, string> contacts;
+
+    // process each query
+    for (size_t i = 0; i < queries.size(); ++i)
+        if (queries[i].type == "add") {
+            // if number exists, change name
+            // if number doesn't exist add number/name pair
+            contacts[queries[i].number] = queries[i].name;
+        } else if (queries[i].type == "del") {
+            // if number exists, delete entry
+            contacts.erase(queries[i].number);
+        } else {       // else a find query
+            string response = "not found";
+            // lookup specified contact and respond with name if found
+            auto search_result = contacts.find(queries[i].number);
+            if (search_result != contacts.end())
+                response = queries[i].name;
+            result.push_back(response);
+        }
+    return result;
+}
+
 
 int main() {
     write_responses(process_queries(read_queries()));
